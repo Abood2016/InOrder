@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table data-table">
+                    <table class="table table-hover">
                       <thead class=" text-primary">
                         <th>ID</th>
                         <th>
@@ -55,7 +55,7 @@
                         @foreach($settings as $setting)
                         	<tr>
                         	<td>{{$setting->id}}</td>
-                            <td>{{$setting->name}}</td>
+                            <td>{{$setting->site_name}}</td>
                             <td>{{$setting->email}}</td>
                             <td>{{$setting->facebook_url}}</td>
                             <td>{{$setting->phone}}</td>

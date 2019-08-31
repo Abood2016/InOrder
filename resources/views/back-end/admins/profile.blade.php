@@ -76,8 +76,11 @@ Admin Profile
                   </a>
                 </div>
                 <div class="card-body">
+                  <i class="material-icons">library_books</i>
                   <h6 class="card-category text-gray">{{$admin->name}}</h6>
+                  <i class="material-icons">person</i>
                   <h4 class="card-title">{{$admin->email}}</h4>
+                  <i class="material-icons">phone</i>
                   <h4 class="card-title">{{$admin->phone}}</h4>
                 </div>
               </div>

@@ -22,6 +22,12 @@
               <p>Categories</p>
             </a>
           </li>
+           <li class="nav-item  {{ is_active('products') }} ">
+            <a class="nav-link" href="{{route('products.index')}}">
+              <i class="material-icons">category</i>
+              <p>Products</p>
+            </a>
+          </li>
            <li class="nav-item  {{ is_active('all') }} ">
             <a class="nav-link" href="{{route('admins.index')}}">
               <i class="material-icons">person</i>
@@ -38,6 +44,12 @@
             <a class="nav-link" href="{{route('colors.index')}}">
               <i class="material-icons">list</i>
               <p>Colors</p>
+            </a>
+          </li>
+            <li class="nav-item  {{ is_active('brands') }} ">
+            <a class="nav-link" href="{{route('brands.index')}}">
+              <i class="material-icons">library_books</i>
+              <p>Brands</p>
             </a>
           </li>
           <li class="nav-item  {{ is_active('settings') }} ">

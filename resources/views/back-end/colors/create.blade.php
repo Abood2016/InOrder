@@ -26,6 +26,13 @@
                             <span class="text-danger">{{ $errors->has('color') ? $errors->first('color') : ''}}</span>
                         </div>
                       </div>
+                      <div class="col-md-6" {{$errors->has('color_name') ? 'has-error' : ''}}>
+                        <div class="form-group bmd-form-group">
+                          <label class="bmd-label-floating">name</label>
+                          <input type="text" name="color_name" class="form-control">
+                            <span class="text-danger">{{ $errors->has('color_name') ? $errors->first('color_name') : ''}}</span>
+                        </div>
+                      </div>
                     </div>
                     <button type="submit" class="btn btn-primary pull-left">Create</button>
                     <div class="clearfix"></div>

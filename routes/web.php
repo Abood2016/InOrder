@@ -22,6 +22,9 @@ Route::group(['namespace' => 'BackEnd','prefix' => 'admin'],function (){
 	Route::resource('/settings', 'SettingController');
 	Route::resource('/sizes', 'SizeController');
 	Route::resource('/colors', 'ColorController');
+	Route::resource('/brands', 'BrandController');
+	Route::resource('/products', 'ProductController');
+
 
 	Route::middleware('auth')->group(function(){
 	Route::get('/profile/{id}/{slug?}', 'AdminController@profile')->name('profile.index');
@@ -36,6 +39,12 @@ Route::group(['namespace' => 'BackEnd','prefix' => 'admin'],function (){
 	Route::post('login','LoginController@store')->name('login.store'); 
 
 });
+
+  Route::get('/','HomeController@index')->name('landing.index'); 
+  Route::get('/product/{id}','HomeController@product')->name('landing.product'); 
+
+
+
 
 Auth::routes();
 

@@ -17,20 +17,19 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
 
             $table->string('name')->unique();
             $table->string('image');
             $table->float('price');
+            $table->float('price_offer')->nullable();
             $table->integer('quantity');
             $table->text('details');
             $table->longtext('description');
             $table->boolean('product_new')->default(false);
-            $table->float('price_offer')->nullable();
-            $table->timestamp('end_offer_at')->nullable();
             $table->timestamp('start_offer_at')->nullable();
+            $table->timestamp('end_offer_at')->nullable();
             $table->integer('discount_value')->nullable();
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->softDeletes();
             $table->timestamps();

@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class Color extends Model
 {
-    protected $fillable = ['color'];
+    protected $fillable = ['color','color_name'];
 
     public function products()
     {

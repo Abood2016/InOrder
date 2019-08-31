@@ -25,6 +25,7 @@ class Store extends FormRequest
     {
         return [
             'color' => 'required',
+            'color_name' => 'required',
         ];
     }
 }

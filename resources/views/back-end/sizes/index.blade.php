@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table data-table">
+                    <table class="table table-hover">
                       <thead class=" text-primary">
                         <th>ID</th>
                         <th>

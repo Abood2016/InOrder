@@ -32,6 +32,9 @@
                         <th>
                           Color
                         </th>
+                        <th>
+                          Name
+                        </th>
                         <th class="text-right">
                           Action
                         </th>
@@ -39,13 +42,14 @@
                       <tbody>
                         @foreach($colors as $color)
                         	<tr>
-                        	<td>{{$color->id}}</td>
+                          <td>{{$color->id}}</td>
                           <td>
                             <span class="badge" style="background-color: {{ $color->color }}; color: #FFF;">color</span>
                           </td>
+                        	<td>{{$color->color_name}}</td>
                           <td class="td-actions text-right">
                              @include('back-end.colors.Buttons.edit')
-                              @include('back-end.colors.Buttons.delete')
+                             @include('back-end.colors.Buttons.delete')
                             </td>
                         	</tr>
                         @endforeach

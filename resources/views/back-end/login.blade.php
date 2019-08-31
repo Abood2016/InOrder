@@ -22,13 +22,12 @@
               <ul>
                 @foreach($errors->all() as $error)
                   <span style="color: #fc3955">{{ $error }} </span>
-
                 @endforeach
               </ul>
             </div>
           @endif
-                 @if ( session()->has('success') )
-                <div class="alert alert-warning">{{ session()->get('success') }}</div>
+                 @if (session()->has('success') )
+                <div class="alert alert-warning" style="color: #fc3955;text-align: center;">{{ session()->get('success') }}</div>
               @endif
             <div class="w3l-form-group">
                 <label>Email:</label>

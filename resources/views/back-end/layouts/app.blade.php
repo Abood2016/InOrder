@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="{{asset('assets/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
 
   @yield('style')
 </head>
@@ -32,8 +34,6 @@
     </div>
   </div>
 
-  @yield('script')
-
 <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
@@ -48,6 +48,20 @@
   <script src="{{asset('assets/js/material-dashboard.js?v=2.1.0') }}"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('assets/demo/demo.js')}}"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+   $( "#datepicker" ).datepicker();
+  } );
+  </script>
+   <script>
+  $( function() {
+        $('#datepicker1').datepicker();
+
+  } );
+  </script>
+  
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -210,6 +224,7 @@
       });
     });
   </script>
+  
   @yield('script')
    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
    @include('sweet::alert')
