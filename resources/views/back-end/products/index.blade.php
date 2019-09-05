@@ -72,7 +72,7 @@
                             <td>{!!str_limit($product->description,10,'...')!!}</td>
                             <td>
                               @if(empty($product->category->name))
-                             <span style="color: red">No Category Selected    </span> 
+                             <span style="color: red">No Category Selected</span> 
                               @else
                               {{$product->category->name}}
                               @endif

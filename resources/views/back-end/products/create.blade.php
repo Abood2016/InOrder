@@ -21,7 +21,7 @@
                        <div class="col-md-6" {{$errors->has('name') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Product Name</label>
-                          <input type="text" name="name" class="form-control">
+                          <input type="text" name="name" class="form-control" value="{{ old('name') }}">
                             <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ''}}</span>
                         </div>
                       </div>
@@ -35,21 +35,21 @@
                   	<div class="col-md-4" {{$errors->has('quantity') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Product quantity</label>
-                          <input type="text" name="quantity" class="form-control">
+                          <input type="text" name="quantity" class="form-control" value="{{ old('quantity') }}">
                             <span class="text-danger">{{ $errors->has('quantity') ? $errors->first('quantity') : ''}}</span>
                         </div>
                       </div>
                       <div class="col-md-4" {{$errors->has('price') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Product price</label>
-                          <input type="text" name="price" class="form-control">
+                          <input type="text" name="price" class="form-control" value="{{ old('price') }}">
                             <span class="text-danger">{{ $errors->has('price') ? $errors->first('price') : ''}}</span>
                         </div>
                       </div>
                    <div class="col-md-4" {{$errors->has('price_offer') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Product price offer</label>
-                          <input type="text" name="price_offer" class="form-control">
+                          <input type="text" name="price_offer" class="form-control" value="{{ old('price_offer') }}">
                             <span class="text-danger">{{ $errors->has('price_offer') ? $errors->first('price_offer') : ''}}</span>
                         </div>
                       </div>
@@ -67,26 +67,26 @@
                         <div class="col-md-4">
                          <div class="md-form">
                                 <label class="form-check-label">Start Offer
-			      			  <input placeholder="Selected date" name="start_offer_at" type="text" id="datepicker" class="form-control datepicker">
+			      			  <input placeholder="Selected date" name="start_offer_at" type="text" id="datepicker" class="form-control datepicker" value="{{ old('start_offer_at') }}">
 							</div>
 						  </div>
 					<div class="col-md-4">
                        <div class="md-form">
                          <label class="form-check-label">End Offer
-			   			  <input placeholder="Selected date" name="end_offer_at" type="text" id="datepicker1" class="form-control datepicker">
+			   			  <input placeholder="Selected date" name="end_offer_at" type="text" id="datepicker1" class="form-control datepicker" value="{{ old('end_offer_at') }}">
 						</div>
 					</div>
 					<div class="col-md-8" {{$errors->has('discount_value') ? 'has-error' : ''}}>
                 <div class="form-group bmd-form-group">
                     <label class="bmd-label-floating">Product discount</label>
-                       <input type="number" name="discount_value" class="form-control">
+                       <input type="number" name="discount_value" class="form-control" value="{{ old('discount_value') }}">
                             <span class="text-danger">{{ $errors->has('discount_value') ? $errors->first('discount_value') : ''}}</span>
                         </div>
                       </div>
 					<div class="col-md-12">
 				          <div class="form-group bmd-form-group">
 				             <label class="">Category</label>
-						     <select name="category_id" class="form-control {{$errors->has('category_id') ? 'has-error' : ''}}" >
+						     <select name="category_id" class="form-control {{$errors->has('category_id') ? 'has-error' : ''}}" value="{{ old('category_id') }}">
 		                			 @foreach($categories as $category)
 		                      <option value="{{$category->id}}" 
 		                      	{{isset($products) && $products->category_id == $category->id ? 'selected' : ''}} >{{$category->name}}
@@ -124,14 +124,14 @@
                      <div class="col-md-12" >
 		                    <div class="form-group bmd-form-group">
 		                          <label class="bmd-label-floating">details</label>
-		                          <textarea cols="30" rows="5" name ="details" class="form-control"></textarea>
+		                          <textarea cols="30" rows="5" name ="details" class="form-control" value="{{ old('details') }}"></textarea>
 		                          <span class="text-danger">{{ $errors->has('details') ? $errors->first('details') : ''}}</span>
 		                   </div>
                 		  </div>
                 	<div class="col-md-12" >
 		              <div class="form-group bmd-form-group">
 		                          <label class="bmd-label-floating">description</label>
-		                          <textarea cols="30" rows="5" name ="description" class="form-control"></textarea>
+		                          <textarea cols="30" rows="5" name ="description" class="form-control" value="{{ old('description') }}"></textarea>
 		                          <span class="text-danger">{{ $errors->has('description') ? $errors->first('description') : ''}}</span>
 		                </div>
                 	 </div>  
@@ -146,4 +146,3 @@
             </div>
 
 @endsection
-

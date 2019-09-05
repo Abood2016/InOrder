@@ -33,7 +33,7 @@
                 <label>Email:</label>
                 <div class="group">
                     <i class="fas fa-user"></i>
-                    <input type="text" class="form-control" name="email" placeholder="Email" required="required" value="{{old('email')}}" />
+                    <input type="text" class="form-control"   value="{{ old('email') }}"name="email" placeholder="Email" required="required" value="{{old('email')}}" />
                 </div>
             </div>
             <div class="w3l-form-group">

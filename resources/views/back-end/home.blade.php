@@ -7,10 +7,11 @@
 
 @section('content')
      
-         @component('back-end.layouts.header',['nav_title' => 'home'])
+@component('back-end.layouts.header',['nav_title' => 'home'])
 
-      @component('back-end.layouts.header',['nav_title' => 'home'])
+@endcomponent
 
-      @endcomponent
+      @include('back-end.sections.statics')
+      @include('back-end.sections.leatestComment')
 
 @endsection

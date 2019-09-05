@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Size;
 use App\Models\Admin;
 use App\Models\Brand;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -48,6 +49,11 @@ class Product extends Model
         public function brand()
         {
          return $this->belongsTo(Brand::class,'brand_id'); 
+        }
+
+        public function comments()
+        {
+         return $this->hasMany(Comment::class); 
         }
 
 

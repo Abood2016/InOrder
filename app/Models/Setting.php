@@ -12,6 +12,6 @@ class Setting extends Model
     	'phone','loaction',
     	'email','facebook_url',
     	'twitter_url','instagram_url',
-    	'about_us',
+    	'about_us','stock_threshold'
     ];
 }

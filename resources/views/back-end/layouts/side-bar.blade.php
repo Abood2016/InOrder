@@ -58,6 +58,13 @@
               <p>Settings</p>
             </a>
           </li>
+
+          <li class="nav-item  {{ is_active('messages') }} ">
+            <a class="nav-link" href="{{route('messages.index')}}">
+              <i class="material-icons">messages</i>
+              <p>messages</p>
+            </a>
+          </li>
          
         </ul>
       </div>

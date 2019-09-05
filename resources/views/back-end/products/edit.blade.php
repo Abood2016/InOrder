@@ -8,6 +8,7 @@
 @component('back-end.layouts.header',['nav_title' => 'Edit Product'])
 @endcomponent
 
+<div class="row">
 <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
@@ -72,13 +73,13 @@
                  <div class="col-md-4">
                   <div class="md-form">
                   <label class="form-check-label">Start Offer
-                  <input placeholder="Selected date" name="start_offer_at" type="text" id="datepicker" class="form-control datepicker" value="{{$product->start_offer_at}}">
+                  <input placeholder="Selected date" name="start_offer_at" type="text"  class="form-control datepicker" value="{{$product->start_offer_at}}">
               </div>
               </div>
 					<div class="col-md-4">
                  <div class="md-form">
                   <label class="form-check-label">End Offer
-                <input placeholder="Selected date" name="end_offer_at" type="text" id="datepicker1" class="form-control datepicker" value="{{$product->end_offer_at}}">
+                <input placeholder="Selected date" name="end_offer_at" type="text" class="form-control datepicker" value="{{$product->end_offer_at}}">
             </div>
           </div>
 					<div class="col-md-8" {{$errors->has('discount_value') ? 'has-error' : ''}}>
@@ -98,7 +99,7 @@
                             </select>
                             <span class="text-danger">{{ $errors->has('category_id') ? $errors->first('category_id') : ''}}</span>
                      </div>
-                    <div class="col-md-12">
+          <div class="col-md-12">
           <div class="form-group bmd-form-group">
                      <label class="">Size</label>
               <select name="sizes[]" class="form-control {{$errors->has('sizes[]') ? 'has-error' : ''}}" multiple style="height: 100px;" >
@@ -111,8 +112,8 @@
                           @endforeach>{{ $size->size }}
                     </option>
                    @endforeach
-                          </select>
-                          <span class="text-danger">{{ $errors->has('sizes[]') ? $errors->first('sizes[]') : ''}}</span>
+              </select>
+              <span class="text-danger">{{ $errors->has('sizes[]') ? $errors->first('sizes[]') : ''}}</span>
                    </div>
                   </div>
 			      <div class="col-md-12">
@@ -146,14 +147,24 @@
 		                          <span class="text-danger">{{ $errors->has('description') ? $errors->first('description') : ''}}</span>
 		                </div>
                 	 </div>  
-            
-                        
-                    </div>
+                </div>
                     <button type="submit" class="btn btn-primary pull-left">Create</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
               </div>
             </div>
+            </div>
 
+        <div class="col-md-3">
+         <div>
+            @include('back-end.comments.create')
+        </div>
+      </div>
+      @include('back-end.comments.index')
 @endsection
+
+
+
+
+

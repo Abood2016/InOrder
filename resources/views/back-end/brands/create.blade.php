@@ -21,7 +21,7 @@
                       <div class="col-md-6" {{$errors->has('name') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Brand Name</label>
-                          <input type="text" name="name" class="form-control">
+                          <input type="text" name="name" class="form-control" value="{{ old('name') }}">
                             <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ''}}</span>
                         </div>
                       </div>

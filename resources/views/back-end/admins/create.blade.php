@@ -23,7 +23,7 @@ Admin
                       <div class="col-md-6" {{$errors->has('name') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Admin Name</label>
-                          <input type="text" name="name" class="form-control">
+                          <input type="text" name="name" class="form-control" value="{{ old('name') }}">
                             <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ''}}</span>
                         </div>
                       </div>
@@ -31,7 +31,7 @@ Admin
                       <div class="col-md-6"{{$errors->has('image') ? 'has-error' : ''}}>
                         <div class="">
                           <label class="">Admin image</label>
-                          <input type="file" name="image"><br>
+                          <input type="file" name="image" ><br>
                           <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : ''}}</span>
                     		</div>
                   	   </div>
@@ -39,7 +39,7 @@ Admin
                   	    <div class="col-md-6" {{$errors->has('email') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Email</label>
-                          <input type="text" name="email" class="form-control">
+                          <input type="text" name="email" class="form-control" value="{{ old('email') }}">
                             <span class="text-danger">{{ $errors->has('email') ? $errors->first('email') : ''}}</span>
                         </div>
 					         </div>
@@ -47,7 +47,7 @@ Admin
                   	   <div class="col-md-6" {{$errors->has('phone') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">phone</label>
-                          <input type="text" name="phone" class="form-control">
+                          <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
                             <span class="text-danger">{{ $errors->has('phone') ? $errors->first('phone') : ''}}</span>
                         </div>
                       </div>

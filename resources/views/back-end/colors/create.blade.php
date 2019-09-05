@@ -22,14 +22,14 @@
                       <div class="col-md-6" {{$errors->has('color') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">color</label>
-                          <input type="color" name="color" class="form-control">
+                          <input type="color" name="color" class="form-control" value="{{ old('color') }}">
                             <span class="text-danger">{{ $errors->has('color') ? $errors->first('color') : ''}}</span>
                         </div>
                       </div>
                       <div class="col-md-6" {{$errors->has('color_name') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">name</label>
-                          <input type="text" name="color_name" class="form-control">
+                          <input type="text" name="color_name" class="form-control" value="{{ old('color_name') }}">
                             <span class="text-danger">{{ $errors->has('color_name') ? $errors->first('color_name') : ''}}</span>
                         </div>
                       </div>

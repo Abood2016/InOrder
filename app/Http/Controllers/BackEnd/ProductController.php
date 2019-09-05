@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Color;
-use App\Models\product_colors;
 use App\Models\Size;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackEnd\CommentTrait;
 
 class ProductController extends Controller
 {
+
+    use CommentTrait;
     /**
      * Display a listing of the resource.
      *
@@ -53,8 +56,8 @@ class ProductController extends Controller
         $file->move(public_path('admin_uploads/product') , $fileName);
 
         $request['product_new']     = $request['product_new'] ? 1 : 0;
-        $request['start_offer_at']  = date('Y-m-d H:i:s');
-        $request['end_offer_at']    = date('Y-m-d H:i:s');
+        $request['start_offer_at']  = date('Y/m/d H:i:s');
+        $request['end_offer_at']    = date('Y/m/d H:i:s');
         $requstArray =['admin_id'=> $admin_id, 'image' => $fileName] + $request->all();
 
         $product = Product::create($requstArray);
@@ -100,7 +103,8 @@ class ProductController extends Controller
         $categories = Category::get();
         $colors = Color::get();
         $sizes = Size::get();
-        return view('back-end.products.edit',compact('product','colors','sizes','categories'));
+        $comments = $product->comments()->orderBy('id','desc')->with('admin')->get();
+        return view('back-end.products.edit',compact('product','colors','sizes','categories','comments'));
     }
 
     /**
@@ -116,23 +120,23 @@ class ProductController extends Controller
         $requstArray = $request->all();
 
         if($request->hasFile('image')) {
-
-        $file = $request->file('image');
-        $fileName = time().str_random('10').'.'.$file->getClientOriginalExtension();
-        if(File::exists(public_path('admin_uploads/product/') . $product->image)){
-            File::delete(public_path('admin_uploads/product/') .  $product->image);
-        }                
-        $file->move(public_path('admin_uploads/product') , $fileName);
-        $requstArray = ['image' => $fileName] + $requstArray; 
+            $file = $request->file('image');
+            $fileName = time().str_random('10').'.'.$file->getClientOriginalExtension();
+            if(File::exists(public_path('admin_uploads/product/') . $product->image)){
+                File::delete(public_path('admin_uploads/product/') .  $product->image);
+            }                
+            $file->move(public_path('admin_uploads/product') , $fileName);
+            $requstArray = ['image' => $fileName] + $requstArray; 
         }
+
         $request['start_offer_at']   = date('Y/m/d H:i:s');
         $request['end_offer_at']   = date('Y/m/d H:i:s');
         $requstArray['product_new'] = isset($requstArray['product_new']) ? 1 : 0;
-        $product->Update($requstArray);
         // dd($requstArray);
+        $product->Update($requstArray);
         if (isset($requstArray['colors']) && !empty($requstArray['colors'])){
                 $product->colors()->sync($requstArray['colors']);
-            }
+            }   
 
         if (isset($requstArray['sizes']) && !empty($requstArray['sizes'])){
                 $product->sizes()->sync($requstArray['sizes']);
@@ -158,6 +162,10 @@ class ProductController extends Controller
          if(File::exists(public_path('admin_uploads/product/') . $product->image)){
             File::delete(public_path('admin_uploads/product/') .  $product->image);
         }
+        //delete the product comment before deleting the video   
+        $productComment = Comment::where('product_id',"=",$product->id);
+        if($productComment != null)
+            $productComment->delete();
         $product->delete();
         alert()->success('Product deleted Successfully','Done');
         return redirect()->route('products.index');

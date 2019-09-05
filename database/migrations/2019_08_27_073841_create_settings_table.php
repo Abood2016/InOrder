@@ -23,6 +23,7 @@ class CreateSettingsTable extends Migration
             $table->string('facebook_url');
             $table->string('twitter_url');
             $table->string('instagram_url');
+            $table->string('stock_threshold')->nullable();
             $table->text('about_us');
             $table->timestamps();
         });

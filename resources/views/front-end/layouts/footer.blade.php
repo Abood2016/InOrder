@@ -30,7 +30,7 @@
 								<h3 class="footer-title">Categories</h3>
 									@foreach($categories->take(5) as $category)
 								<ul class="footer-links">
-									<li><a href="#">{{$category->name}}</a></li><br>
+									<li><a href="{{route('product.category',['id'=>$category->id])}}">{{$category->name}}</a></li><br>
 								</ul>
 								@endforeach
 							</div>
@@ -42,7 +42,7 @@
 							<div class="footer">
 								<h3 class="footer-title">Information</h3>
 								<ul class="footer-links">
-									<li><a href="#">Contact Us</a></li>
+									<li><a href="{{route('contact.create')}}">Contact Us</a></li>
 									<li><a href="#">return Orders</a></li>
 									<li><a href="#">Terms & Conditions</a></li>
 								</ul>
@@ -54,7 +54,7 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
+									<li><a href="{{route('cart.index')}}">View Cart</a></li>
 									<li><a href="#">Wishlist</a></li>
 								</ul>
 							</div>
@@ -102,3 +102,5 @@
 		<script src="{{asset('website/js/nouislider.min.js')}}"></script>
 		<script src="{{asset('website/js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('website/js/main.js')}}"></script>
+		   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
+			   @include('sweet::alert')

@@ -22,7 +22,7 @@
                       <div class="col-md-6" {{$errors->has('size') ? 'has-error' : ''}}>
                         <div class="form-group bmd-form-group">
                           <label class="bmd-label-floating">Size</label>
-                          <input type="text" name="size" class="form-control">
+                          <input type="text" name="size" class="form-control" value="{{ old('size') }}">
                             <span class="text-danger">{{ $errors->has('size') ? $errors->first('size') : ''}}</span>
                         </div>
                       </div>
