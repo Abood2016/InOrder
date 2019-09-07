@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\frontend\Comment\Store;
 use App\Models\Setting;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\Comment;
 use App\Models\Size;
+use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -18,7 +23,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+      $this->middleware('auth')->only([
+
+        'commentUpdate','commentStore','profileUpdate'
+     ]);
     }
 
     /**
@@ -26,6 +34,44 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function profile($id , $slug = null)
+    {
+       $user = User::findOrFail($id);
+        return view('front-end.users.profile',compact('user'));
+
+    }
+
+    public function profileUpdate(\App\Http\Requests\frontend\User\Store $request)
+    {
+      $user = User::findOrFail(auth()->user()->id);
+      $array = []; 
+      if($request->email != $user->email)
+      {
+          $email = User::where('email',$request->email)->first();
+            if ($email == null) {
+             $array['email'] = $request->email;
+            }
+      }
+
+       if($request->name != $user->name)
+      {
+          $array['name'] = $request->name;
+      }
+
+      if($request->password != '')
+      {
+          $array['password'] = Hash::make($request->password);
+      }
+
+      if (!empty($array)) {
+        $user->update($array);
+      }
+      alert()->success('Your Profile Updated Successfully','Done');
+      return redirect()->route('front.profile',
+      ['id' => $user->id , 'slug' => slug($user->name)]);
+
+    }
 
     public function index()
     {
@@ -46,7 +92,7 @@ class HomeController extends Controller
         return view('front-end.index',compact('products','topSilling'));
     }
 
-    public function product($id)
+    public function product($id , $slug = null)
     {
 
     $product = Product::findOrFail($id);
@@ -54,7 +100,6 @@ class HomeController extends Controller
     $colors = Color::get();
     $sizes = Size::get();
     $relatedProduct = Product::inRandomOrder()->take(4)->get();
-   
      if ($product->quantity > $setting->stock_threshold) { //is true
         $stockLevel = 'In Stock';
     } elseif($product->quantity <= $setting->stock_threshold && $product->quantity > 0) {
@@ -67,7 +112,7 @@ class HomeController extends Controller
     compact('product','setting','stockLevel','sizes','colors','relatedProduct'));
 }
 
-    public function category($id)
+    public function category($id , $slug = null)
     {
     $category = Category::findOrFail($id);
     $products = Product::where('category_id',$id)->orderBy('id' , 'desc')->paginate(10);
@@ -100,5 +145,32 @@ class HomeController extends Controller
 
     }
 
+
+    public function commentStore (Store $request , $id)
+    {
+      $product = Product::findOrFail($id);
+
+       Comment::create([
+        'user_id' =>auth()->user()->id,
+        'product_id' => $product->id,
+        'comment' =>$request->comment
+      ]);
+       alert()->success('Comment Add','Done');
+      return redirect()->route('landing.product' , ['id' => $product->id , '#comments']);
+
+    }
+
+
+    public function commentUpdate($id , Store $request)
+    { 
+      $comment = Comment::findOrFail($id);
+      if ($comment->user_id == auth()->user()->id ) {
+          
+       $comment->update(['comment' => $request->comment]);
+
+      }
+      alert()->success('Comment Updated Successfully','Done');
+      return redirect()->route('landing.product' , ['id' => $comment->product_id , '#comments']);
+    }
 
 }

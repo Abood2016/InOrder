@@ -27,12 +27,8 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet" href="{{asset('website/css/style.css')}}"/>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+
+
 
 </head>
 
@@ -47,8 +43,30 @@
 	<li><a href="#"><i class="fa fa-map-marker"></i>{{$settings->loaction}}</a></li>
 </ul>
 <ul class="header-links pull-right">
-	<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-	<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+
+
+	@guest
+	<li><a href="{{route('userLogin')}}"><i class="fa fa-user-o"></i>login</a></li>
+	<li><a href="{{route('userRegiater')}}"><i class="fa fa-user-o"></i>Register</a></li>
+	@else
+	<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" title ="Your Profile" href="{{route('front.profile',['id'=> auth()->user()->id ,'slug'=>slug(auth()->user()->name)])}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    
+				</li>
+
+				<li class="nav-item dropdown">
+                    <a class="fa fa-share-square-o" title ="Logout" href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+						 {{ __('Logout')  }}
+				 </a>
+									<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+				</li>
+				@endguest
+						
 </ul>
 </div>
 </div>
@@ -166,7 +184,7 @@
 <ul class="main-nav nav navbar-nav">
 	<li class="active"><a href="{{route('landing.index')}}">Home</a></li>
 	@foreach($categories as $category)	
-	<li><a href="{{route('product.category',['id'=>$category->id])}}">{{$category->name}}</a></li>
+	<li><a href="{{route('product.category',['id'=>$category->id , 'slug'=>slug($category->name)])}}">{{$category->name}}</a></li>
 	@endforeach
 </ul>
 <!-- /NAV -->

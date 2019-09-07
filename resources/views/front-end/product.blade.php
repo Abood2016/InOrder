@@ -147,7 +147,7 @@
 							@endif
 							<ul class="product-links">
 								<li>Category:</li>
-								<li><a href="{{route('product.category',['id'=>$product->category->id])}}">
+								<li><a href="{{route('product.category',['id'=>$product->category->id ,'slug'=>slug($product->category->name)])}}">
 								@if(empty($product->category->name))	
 								<span style="color: red">Product dosn't have Category</span> 
 								@else
@@ -173,7 +173,7 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+								<li class="active"><a data-toggle="tab" >Description</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -193,13 +193,90 @@
 					</div>
 					<!-- /product tab -->
 				</div>
-				<!-- /row -->
+			<hr>
+	<div class="row" id="comments">
+	<div class="col-md-12">
+    	<div class="card text-left">
+			<div class="card-header card-header-rose">
+			@php $comments = $product->comments @endphp
+			<h5>Comments ({{count($comments)}})</h5>
 			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
+			<div class="card-body">
+			@foreach($comments as $comment)
+				<div class="row">
+				<div class="col-md-8">
+					<i class="nc-icon nc-chat-33"></i> 
+					
+		<i class="fa fa-comments"></i>
+		@if(empty($comment->user->name))
+		<del> InOrder User</del>
+		@else
+		<a href="{{route('front.profile',['id'=>$comment->user->id , 'slug'=>slug($comment->user->name)])}}">
+		{{ $comment->user->name }}
+		@endif
+	</a>
 
-		<!-- Section -->
+	</div>
+	<div class="col-md-4 text-right">
+	<span> <i class="nc-icon nc-calendar-60"></i> {{ $comment->created_at->diffForHumans() }} |</span>
+	
+	</div>
+	</div>
+		<li>{{$comment->comment}}</li>
+		@if(auth()->user()) 
+			@if(auth()->user()->id == $comment->user->id)
+		<a href="" onclick="$(this).next('div').slideToggle(2000);return false;">Edit</a>
+		@endif       
+
+		<div style="display: none;">
+		<form action="{{route('front.comment.update',['id' => $comment->id])}}" method="post">
+			@csrf
+			{{csrf_field()}}
+			<div class="form-group">
+			<textarea name="comment" rows="4" class="form-control">{{$comment->comment}}</textarea>
+			</div>
+			<button type="submit" class="primary-btn cta-btn">Edit</button>
+		</form>
+		</div>
+			@endif
+
+		@if(!$loop->last)
+			<hr>
+		@endif
+		@endforeach
+			</div>
+		</div>          			
+        </div>
+	  </div><br>
+	  @if(auth()->user())	
+	  <form action="{{route('front.commentStore',['id' => $product->id])}}" method="post">
+			@csrf
+			{{csrf_field()}}
+			<div class="form-group">
+			<label for="comment">Add Comment</label>
+			<textarea name="comment" rows="4" class="form-control"></textarea>
+			<span class="text-danger">{{ $errors->has('comment') ? $errors->first('comment') : ''}}</span>
+			</div>
+			<button type="submit" class="primary-btn cta-btn">Add Comment</button>
+	  </form>
+	  @endif
+	</div>
+
+</div>
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+						@guest
+						<p>Sign in to add Comment </strong></p>
+						<a class="primary-btn cta-btn" 
+						href="{{route('userLogin')}}" style="margin-bottom:10px;">Sign In now</a>
+						@else
+						@endguest	
+						</div>
+					</div>
+				<!-- /row -->
+
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -222,12 +299,11 @@
 								{{ $relatedproduct->discount_value }}%
 							</span>
 							@endif	
-							
-							@if ($product->product_new)
-									<span class="new">
-										New
-									</span>
+						@if($relatedproduct->product_new == true)
+							<span class="new">
+								New
 								@endif
+							</span>
 						</div>
 					</div>
 					<div class="product-body">
@@ -277,6 +353,7 @@
 			</div>
 			<!-- /container -->
 		</div>
+
 
 @endsection
 

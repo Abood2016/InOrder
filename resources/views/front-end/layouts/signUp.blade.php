@@ -5,10 +5,14 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="newsletter">
+						@guest
 						<p>Sign Up for the <strong>InOrder</strong></p>
 						<a class="primary-btn cta-btn" 
 						href="#" style="margin-bottom:10px;">Sign Up now</a>
+						@else
+						<strong>InOrder Social Links</strong></p>
 
+						@endguest	
 							<ul class="newsletter-follow">
 								<li>
 									<a href="{{$settings->facebook_url}}" target="_blank"><i class="fa fa-facebook"></i></a>

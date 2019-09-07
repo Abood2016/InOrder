@@ -14,7 +14,10 @@
                   <tr>
                     <td>{{ $comment->id }}</td>
                     <td>
-                      <small>{{ $comment->admin->name }}</small>
+                      <small>
+                		<i class="fa fa-comments"></i>
+                      {{ $comment->user->name }}
+                      </small>
                       <p>{{ $comment->comment }}</p>
                       <small>{{ $comment->created_at->diffForHumans() }}</small>
                     </td>

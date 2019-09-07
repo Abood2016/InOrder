@@ -53,7 +53,13 @@
 							<div class="footer">
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
+								@guest
 									<li><a href="#">My Account</a></li>
+									@else
+									<li><a href="#">
+									{{ Auth::user()->name }}
+									</a></li>
+								@endguest
 									<li><a href="{{route('cart.index')}}">View Cart</a></li>
 									<li><a href="#">Wishlist</a></li>
 								</ul>
@@ -95,6 +101,7 @@
 		</footer>
 		<!-- /FOOTER -->
 
+
 		<!-- jQuery Plugins -->
 		<script src="{{asset('website/js/jquery.min.js')}}"></script>
 		<script src="{{asset('website/js/bootstrap.min.=js')}}"></script>
@@ -102,5 +109,7 @@
 		<script src="{{asset('website/js/nouislider.min.js')}}"></script>
 		<script src="{{asset('website/js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('website/js/main.js')}}"></script>
+		<!-- <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
 		   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
 			   @include('sweet::alert')

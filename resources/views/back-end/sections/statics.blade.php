@@ -7,7 +7,7 @@
                 <i class="material-icons">store</i>
                 </div>
                 <p class="card-category">Product</p>
-                <h3 class="card-title">{{ \App\Models\Product::count() }}
+                <h3 class="card-title"><span class="badge badge-danger">{{\App\Models\Product::count()}}</span>
                 </h3>
             </div>
             <div class="card-footer">
@@ -25,7 +25,7 @@
                 <i class="material-icons">category</i>
                 </div>
                 <p class="card-category">Categories</p>
-                <h3 class="card-title">{{ \App\Models\Category::count() }}</h3>
+                <h3 class="card-title"><span class="badge badge-danger">{{\App\Models\Category::count()}}</span></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -41,7 +41,7 @@
                 <i class="material-icons">messages</i>
                 </div>
                 <p class="card-category">Messages</p>
-                <h3 class="card-title">{{\App\Models\Message::count()}}</h3>
+                <h3 class="card-title"><span class="badge badge-danger">{{\App\Models\Message::count()}}</span></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">

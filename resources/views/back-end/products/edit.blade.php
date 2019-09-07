@@ -158,7 +158,6 @@
 
         <div class="col-md-3">
          <div>
-            @include('back-end.comments.create')
         </div>
       </div>
       @include('back-end.comments.index')

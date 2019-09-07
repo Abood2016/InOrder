@@ -4,27 +4,27 @@
 <div class="section">
 
 	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row">
-			<!-- shop -->
-			@foreach($categories->take(3) as $category)
-			<div class="col-md-4 col-xs-6">
-				<div class="shop">
-					<div class="shop-img">
-						<img src="{{asset('/admin_uploads/category').'/'.$category->image}}" alt="">
-					</div>
-					<div class="shop-body">
-						<h3>{{$category->name}}</h3>
-						<a href="{{route('product.category',['id'=>$category->id])}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			</div>
-			@endforeach
-			<!-- /shop -->
+<div class="container">
+<!-- row -->
+<div class="row">
+<!-- shop -->
+@foreach($categories->take(3) as $category)
+<div class="col-md-4 col-xs-6">
+	<div class="shop">
+		<div class="shop-img">
+			<img src="{{asset('/admin_uploads/category').'/'.$category->image}}" alt="">
 		</div>
-		<!-- /row -->
+		<div class="shop-body">
+			<h3>{{$category->name}}</h3>
+			<a href="{{route('product.category',['id'=>$category->id, 'slug'=>slug($category->name)])}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+		</div>
 	</div>
+</div>
+@endforeach
+<!-- /shop -->
+</div>
+<!-- /row -->
+</div>
 <!-- /container -->
 </div>
 <!-- /SECTION -->
@@ -51,21 +51,21 @@
 @foreach($products as $product)	
 <div class="col-md-3">
 <!-- product -->
-<div class="product">
-	<div class="product-img">
-		<img src="{{asset('/admin_uploads/product').'/'.$product->image}}" alt="">
-		<div class="product-label">
-			@if($product->discount_value)
-			<span class="sale">{{$product->discount_value }}%
-			</span>
-		   @endif
+	<div class="product">
+		<div class="product-img">
+			<img src="{{asset('/admin_uploads/product').'/'.$product->image}}" alt="">
+			<div class="product-label">
+				@if($product->discount_value)
+				<span class="sale">{{$product->discount_value }}%
+				</span>
+			@endif
 
-		   @if($product->product_new == true)
-			<span class="new">
-				New
-				@endif
-			</span>
-		</div>
+			@if($product->product_new == true)
+				<span class="new">
+					New
+					@endif
+				</span>
+			</div>
 	</div>
 	<div class="product-body">
 		<p class="product-category">
@@ -76,7 +76,7 @@
 		@endif
 		</p>
 		<h3 class="product-name">
-			<a href="{{ route('landing.product',['id'=>$product->id]) }}">
+			<a href="{{ route('landing.product',['id'=>$product->id,'slug'=>slug($product->name)]) }}">
 			{{$product->name}}
 		</a></h3>
 

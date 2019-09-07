@@ -13,5 +13,6 @@
 
       @include('back-end.sections.statics')
       @include('back-end.sections.leatestComment')
+      @include('back-end.sections.leatestUser')
 
 @endsection
