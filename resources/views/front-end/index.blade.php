@@ -118,14 +118,14 @@
 </div>
 @endforeach
 </div>
-</div>
-					</div>
 					<!-- Products tab & slick -->
-				</div>
+					</div>
 				<!-- /row -->
-			</div>
+				</div>
 			<!-- /container -->
+			</div>
 		</div>
+</div>
 		<!-- /SECTION -->
 
 		<!-- HOT DEAL SECTION -->

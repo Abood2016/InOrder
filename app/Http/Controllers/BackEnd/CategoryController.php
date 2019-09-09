@@ -113,14 +113,23 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        try {
         $category = Category::findOrFail($id);
-        
-         if(File::exists(public_path('admin_uploads/category/') . $category->image)){
-            File::delete(public_path('admin_uploads/category/') .  $category->image);
+        $categoryProduct = $category->product()->count();
+        if ($categoryProduct > 0)
+            return response()->json(['status' => 404, 'message' => 'This Category associated with Product']);
+            $category->delete();
+            
+        if(File::exists(public_path('admin_uploads/category/') . $category->image)){
+           File::delete(public_path('admin_uploads/category/') .  $category->image);
         }
+           return response()->json(['status' => 200, 'message' => '']);
         $category->delete();
+        }catch (ModelNotFoundException $modelNotFoundException) {
+          return response()->json(['status' => 200, 'message' => 'Category not Found']);
+        }
         alert()->success('Category deleted Successfully','Done');
-        return redirect()->route('categories.index');
+         return redirect()->route('categories.index');
          
     }
 }

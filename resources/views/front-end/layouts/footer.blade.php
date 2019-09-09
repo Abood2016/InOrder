@@ -54,7 +54,8 @@
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
 								@guest
-									<li><a href="#">My Account</a></li>
+								<li><a href="{{route('userLogin')}}"><i class="fa fa-user-o"></i>login</a></li>
+								<li><a href="{{route('userRegiater')}}"><i class="fa fa-user-o"></i>Register</a></li>
 									@else
 									<li><a href="#">
 									{{ Auth::user()->name }}

@@ -51,21 +51,21 @@
 	<li><a href="{{route('userRegiater')}}"><i class="fa fa-user-o"></i>Register</a></li>
 	@else
 	<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" title ="Your Profile" href="{{route('front.profile',['id'=> auth()->user()->id ,'slug'=>slug(auth()->user()->name)])}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-                    
-				</li>
+	<a class="nav-link dropdown-toggle" title ="Your Profile" href="{{route('front.profile',['id'=> auth()->user()->id ,'slug'=>slug(auth()->user()->name)])}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		{{ Auth::user()->name }}
+	</a>
+	
+</li>
 
-				<li class="nav-item dropdown">
-                    <a class="fa fa-share-square-o" title ="Logout" href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						 {{ __('Logout')  }}
-				 </a>
-									<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-				</li>
-				@endguest
+<li class="nav-item dropdown">
+	<a class="fa fa-share-square-o" title ="Logout" href="{{ route('user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+			{{ __('Logout')  }}
+	</a>
+					<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+</li>
+@endguest
 						
 </ul>
 </div>

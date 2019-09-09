@@ -39,6 +39,7 @@ class ProductController extends Controller
         $categories = Category::get();
         $colors = Color::get();
         $sizes = Size::get();
+        
         return view('back-end.products.create',compact('categories','colors','sizes'));
     }
 

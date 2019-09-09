@@ -36,9 +36,13 @@
                         "_token": token,
                         "_method":'DELETE'
                     },
-                     success: function (data){
+                     success: function (response,data){
+                      if (response.status == 200) {
+                        swal("Category Deleted Successfully", response.message, "success")
                              self.parent().parent().hide();
                          swal("Deleted!", "Category Deleted Succsefully.", "success");
+                        }else
+                          swal("Can't Delete this Category", response.message, "error")
                         }
                 });
                     
