@@ -12,6 +12,7 @@ use App\Models\Comment;
 use App\Models\Size;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -111,6 +112,15 @@ class HomeController extends Controller
     return view('front-end.product',
     compact('product','setting','stockLevel','sizes','colors','relatedProduct'));
 }
+
+    public function shop()
+    {
+      $products = Product::all();
+      $categories = Category::all()->take(6);
+      $brands = Brand::all()->take(4);
+      $topSilling = Product::orderBy('id','desc')->take(4)->get();
+      return view('front-end.shopping',compact('products','categories','brands','topSilling'));
+    }
 
     public function category($id , $slug = null)
     {

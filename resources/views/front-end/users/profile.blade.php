@@ -3,11 +3,14 @@
     <div class="container">
       <div class="owner">
         <div class="avatar">
-          <img src="/website/img/clem-onojeghuo-3.jpg" alt="Circle Image" width="200px" style=" border-radius: 100px;
-    margin-top: -100;">
+              <img src="/website/img/clem-onojeghuo-3.jpg" alt="Circle Image" width="200px" style=" border-radius: 100px;
+        margin-top: -100;">
         </div><br>
         <div class="name">
-          <h4 class="title">{{$user->name}}
+          <h4 class="title" style="margin-left: 70px;">{{$user->name}} <span class="label label-purple arrowed-in-right">
+              <i class="ace-icon fa fa-circle smaller-80 align-middle" title="active" style="color: green"></i>
+              online
+            </span>
             <br>
           </h4>
           <h6 class="description">{{$user->email}}</h6>

@@ -56,7 +56,9 @@ Route::group(['namespace' => 'BackEnd','prefix' => 'admin'],function (){
   Route::resource('cart', 'CartController');
   Route::delete('cart/destroy/{id}', ['as' => 'cart.destroy' , 'uses' => 'CartController@destroy']);
   Route::get('/profile/{id}/{slug?}', 'HomeController@profile')->name('front.profile');	
-   //user Registration
+  Route::get('/shop', 'HomeController@shop')->name('shop');  
+ 
+  //user Registration
   Route::get('/user/register','RegisterController@index')->name('userRegiater');
   Route::post('/user/register','RegisterController@store')->name('user.register');
 
@@ -66,10 +68,10 @@ Route::group(['namespace' => 'BackEnd','prefix' => 'admin'],function (){
   Route::post('user/logout','UserLoginController@logout')->name('user.logout');
 
   //user Reset Password Routs
-	Route::post('user/password/email','userAuth\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
-	Route::get('user/password/reset','userAuth\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
-	Route::post('user/password/reset','userAuth\ResetPasswordController@reset');
-	Route::get('user/password/reset/{token}','userAuth\ResetPasswordController@showResetForm')->name('user.password.reset');
+  Route::post('user/password/email','userAuth\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
+  Route::get('user/password/reset','userAuth\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+  Route::post('user/password/reset','userAuth\ResetPasswordController@reset');
+  Route::get('user/password/reset/{token}','userAuth\ResetPasswordController@showResetForm')->name('user.password.reset');
 
   Route::middleware('auth')->group(function(){
   Route::post('/comments/{id}/create', 'HomeController@commentStore')->name('front.commentStore');

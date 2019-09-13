@@ -19,7 +19,7 @@
 
             swal({
                   title: "Are you sure?",
-                  text: "Do you want this User",
+                  text: "Do you want this User ",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true,

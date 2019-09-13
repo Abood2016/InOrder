@@ -193,7 +193,7 @@
 							{{$product->category->name}}
 							@endif
 					</p>
-					<h3 class="product-name"><a href="#">
+					<h3 class="product-name"><a href="{{route('landing.product',['id'=>$product->id,'slug'=>slug($product->name) ])}}">
 						{{$product->name}}
 					</a></h3>
 					<h4 class="product-price">

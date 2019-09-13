@@ -57,7 +57,7 @@
 								<li><a href="{{route('userLogin')}}"><i class="fa fa-user-o"></i>login</a></li>
 								<li><a href="{{route('userRegiater')}}"><i class="fa fa-user-o"></i>Register</a></li>
 									@else
-									<li><a href="#">
+								<li><a>
 									{{ Auth::user()->name }}
 									</a></li>
 								@endguest
