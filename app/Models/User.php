@@ -2,10 +2,12 @@
 
 namespace App\Models;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\userResetPasswordNotification;
-class User extends Authenticatable
+
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 

@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('auth')->only([
+      $this->middleware()->only([
 
         'commentUpdate','commentStore','profileUpdate'
      ]);
@@ -43,6 +43,7 @@ class HomeController extends Controller
 
     }
 
+    //update user prpfile
     public function profileUpdate(\App\Http\Requests\frontend\User\Store $request)
     {
       $user = User::findOrFail(auth()->user()->id);
@@ -70,7 +71,7 @@ class HomeController extends Controller
       }
       alert()->success('Your Profile Updated Successfully','Done');
       return redirect()->route('front.profile',
-      ['id' => $user->id , 'slug' => slug($user->name)]);
+       ['id' => $user->id , 'slug' => slug($user->name)]);
 
     }
 
